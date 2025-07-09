@@ -7,6 +7,8 @@ public class Player_Movement : MonoBehaviour
 
     [SerializeField] float horizontalSpeed = 5f;
     [SerializeField] float jumpPower = 5f;
+    [SerializeField] GameObject centerOfRotation;
+    [SerializeField] Transform cursor;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -17,12 +19,14 @@ public class Player_Movement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
         horizontalMovement = Input.GetAxis("Horizontal");
 
-        if(Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.Space))
         {
             Jump();
         }
+
     }
 
     void FixedUpdate()

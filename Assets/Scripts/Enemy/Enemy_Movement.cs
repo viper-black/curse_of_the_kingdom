@@ -6,14 +6,12 @@ public class Enemy_Movement : MonoBehaviour
     [SerializeField] float attackRange = 0.1f;
     [SerializeField] GameObject body;
     [SerializeField] float speed;
-    Rigidbody RB;
     GameObject player;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player");
-        RB = GetComponent<Rigidbody>();
     }
 
     // Update is called once per frame
@@ -39,15 +37,7 @@ public class Enemy_Movement : MonoBehaviour
     }
     void Move(Vector3 direction)
     {
-        Debug.Log("Moving" + direction);
-        if(direction.x<0)
-        {
-            RB.linearVelocity = new Vector3(-speed,0,0);
-        }
-        if (direction.x > 0)
-        {
-            RB.linearVelocity = new Vector3(speed, 0, 0);
-        }
+        transform.position = Vector3.MoveTowards(transform.position, player.transform.position, speed * Time.deltaTime);
     }
     void Attack()
     {

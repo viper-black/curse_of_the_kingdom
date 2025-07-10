@@ -6,14 +6,12 @@ public class Enemy_Flying : MonoBehaviour
     [SerializeField] float attackRange = 0.1f;
     [SerializeField] GameObject body;
     [SerializeField] float speed;
-    Rigidbody RB;
     GameObject player;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player");
-        RB = GetComponent<Rigidbody>();
     }
 
     // Update is called once per frame

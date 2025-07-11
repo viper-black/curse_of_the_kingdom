@@ -8,7 +8,7 @@ public class Player_Movement : MonoBehaviour
     [SerializeField] float horizontalSpeed = 5f;
     [SerializeField] float jumpPower = 5f;
     [SerializeField] GameObject centerOfRotation;
-    [SerializeField] Transform cursor;
+    [SerializeField] GameObject legs;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -22,12 +22,12 @@ public class Player_Movement : MonoBehaviour
 
         horizontalMovement = Input.GetAxis("Horizontal");
 
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.Space) && legs.GetComponent<Player_Jump_Check>().ableToJump)
         {
             Jump();
         }
 
-    }
+}
 
     void FixedUpdate()
     {
@@ -36,9 +36,6 @@ public class Player_Movement : MonoBehaviour
 
     void Jump()
     {
-        if (Physics.Raycast(new Vector3(transform.position.x, transform.position.y + 0.5f, transform.position.z), Vector3.down, 0.51f))
-        {
-            RB.linearVelocity = new Vector3(RB.linearVelocity.x, jumpPower, 0);
-        }
+        RB.linearVelocity = new Vector3(RB.linearVelocity.x, jumpPower, 0);
     }
 }

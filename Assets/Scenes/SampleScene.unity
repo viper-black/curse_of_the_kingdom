@@ -196,6 +196,7 @@ MonoBehaviour:
   attackRange: 0.1
   body: {fileID: 612455429}
   speed: 2
+  looseInterestDistance: 15
 --- !u!1 &155161313
 GameObject:
   m_ObjectHideFlags: 0
@@ -1177,6 +1178,7 @@ MonoBehaviour:
   attackRange: 1.5
   body: {fileID: 559164286}
   speed: 3
+  looseInterestDistance: 15
 --- !u!1 &1826918462
 GameObject:
   m_ObjectHideFlags: 0

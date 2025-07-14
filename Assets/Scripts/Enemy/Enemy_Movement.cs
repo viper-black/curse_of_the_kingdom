@@ -6,7 +6,10 @@ public class Enemy_Movement : MonoBehaviour
     [SerializeField] float attackRange = 0.1f;
     [SerializeField] GameObject body;
     [SerializeField] float speed;
+    [SerializeField] float looseInterestDistance = 15f;
     GameObject player;
+
+    bool activated = false;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -19,12 +22,21 @@ public class Enemy_Movement : MonoBehaviour
     {
         RaycastHit hit;
         Vector3 direction = player.transform.position - body.transform.position;
-        if (Physics.Raycast(body.transform.position,direction,out hit,activationDistance))
+        if(!activated)
         {
-            if(hit.collider.gameObject.tag == "Player")
+            if (Physics.Raycast(body.transform.position, direction, out hit, activationDistance))
             {
-                Debug.Log("activated");
-                if(Vector3.Distance(body.transform.position, player.transform.position) <= attackRange)
+                if (hit.collider.gameObject.tag == "Player")
+                {
+                    activated = true;
+                }
+            }
+        }
+        if(activated)
+        {
+            if(Vector3.Distance(player.transform.position, transform.position) < looseInterestDistance)
+            {
+                if (Vector3.Distance(player.transform.position, transform.position) < attackRange)
                 {
                     Attack();
                 }
@@ -32,6 +44,10 @@ public class Enemy_Movement : MonoBehaviour
                 {
                     Move(direction);
                 }
+            }
+            else
+            {
+                activated = false;
             }
         }
     }
